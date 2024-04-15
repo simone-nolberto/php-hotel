@@ -81,27 +81,30 @@ $park_check = $_GET["park"];
 
                 <?php foreach ($hotels as $hotel) : ?>
 
-                    <tr>
-                        <td><?= $hotel["name"] ?></td>
-                        <td><?= $hotel["description"] ?></td>
-                        <td> <?php if ($hotel["parking"] == true) : ?>
-                                "Possibilità di parcheggio";
+                    <?php if ($hotel["parking"] == true) : ?>
+                        <tr>
+                            <td><?= $hotel["name"] ?></td>
+                            <td><?= $hotel["description"] ?></td>
+                            <td> <?php if ($hotel["parking"] == true) : ?>
+                                    "Possibilità di parcheggio";
 
-                            <?php else : ?>
-                                "Non siamo attrezzati per questo";
+                                <?php else : ?>
+                                    "Non siamo attrezzati per questo";
 
-                            <?php endif; ?>
-                        </td>
-                        <td><?= $hotel["vote"] ?></td>
-                        <td><?= $hotel["distance_to_center"] ?> Km</td>
-                    </tr>
+                                <?php endif; ?>
+                            </td>
+                            <td><?= $hotel["vote"] ?></td>
+                            <td><?= $hotel["distance_to_center"] ?> Km</td>
+                        </tr>
+
+                    <?php endif; ?>
 
                 <?php endforeach; ?>
 
 
 
             <?php else : ?>
-                
+
                 <?php foreach ($hotels as $hotel) : ?>
 
                     <tr>
