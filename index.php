@@ -40,7 +40,7 @@ $hotels = [
 
 ];
 
-// var_dump($hotels)
+$park_check = $_GET["park"];
 
 ?>
 
@@ -56,6 +56,14 @@ $hotels = [
 
 <body>
 
+
+
+
+    <form action="" method="get">
+        <input type="text" name="park" id="">
+        <button type="submit">Cerca</button>
+    </form>
+
     <table class="table">
         <thead>
             <tr>
@@ -69,17 +77,52 @@ $hotels = [
 
         <tbody>
 
-            <?php foreach ($hotels as $hotel) : ?>
+            <?php if ($park_check == "parcheggio") : ?>
 
-                <tr>
-                    <td><?= $hotel["name"] ?></td>
-                    <td><?= $hotel["description"] ?></td>
-                    <td><?= $hotel["parking"] ?></td>
-                    <td><?= $hotel["vote"] ?></td>
-                    <td><?= $hotel["distance_to_center"] ?> Km</td>
-                </tr>
+                <?php foreach ($hotels as $hotel) : ?>
 
-            <?php endforeach; ?>
+                    <tr>
+                        <td><?= $hotel["name"] ?></td>
+                        <td><?= $hotel["description"] ?></td>
+                        <td> <?php if ($hotel["parking"] == true) : ?>
+                                "Possibilità di parcheggio";
+
+                            <?php else : ?>
+                                "Non siamo attrezzati per questo";
+
+                            <?php endif; ?>
+                        </td>
+                        <td><?= $hotel["vote"] ?></td>
+                        <td><?= $hotel["distance_to_center"] ?> Km</td>
+                    </tr>
+
+                <?php endforeach; ?>
+
+
+
+            <?php else : ?>
+                
+                <?php foreach ($hotels as $hotel) : ?>
+
+                    <tr>
+                        <td><?= $hotel["name"] ?></td>
+                        <td><?= $hotel["description"] ?></td>
+                        <td> <?php if ($hotel["parking"] == true) : ?>
+                                "Possibilità di parcheggio";
+
+                            <?php else : ?>
+                                "Non siamo attrezzati per questo";
+
+                            <?php endif; ?>
+                        </td>
+                        <td><?= $hotel["vote"] ?></td>
+                        <td><?= $hotel["distance_to_center"] ?> Km</td>
+                    </tr>
+
+                <?php endforeach; ?>
+
+
+            <?php endif; ?>
         </tbody>
 
     </table>
